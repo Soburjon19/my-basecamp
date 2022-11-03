@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    "
+  >
+    <form
+      action="/editProfile"
+      style="display: flex; flex-direction: column"
+      method="post"
+    >
+      <% rows.forEach(user => { %>
+      <label
+        >Username
+        <input
+          spellcheck="false"
+          min="3"
+          class="form-control mt-2"
+          required
+          type="text"
+          name="username"
+          value="<%= user.username %>"
+        />
+      </label>
+      <label
+        >Email
+        <input
+          spellcheck="false"
+          min="3"
+          class="form-control mt-2"
+          required
+          type="text"
+          name="email"
+          value="<%= user.email %>"
+        />
+      </label>
+      <label
+        >Password
+        <input
+          spellcheck="false"
+          min="3"
+          class="form-control mt-2"
+          required
+          type="text"
+          name="password"
+          value="<%= user.password %>"
+        />
+      </label>
+      <div class="d-flex">
+        <button
+          class="btn btn-primary mt-2"
+          type="submit"
+          style="margin-right: 5px"
+        >
+          Update profile
+        </button>
+        <a class="btn w-50 btn-warning mt-2" href="/login">Cancel</a>
+      </div>
+      <button class="btn btn-danger my-2" id="delete">Delete is account</button>
+      <form action=""></form>
+      <%}); %>
+    </form>
+
+    <script src="/js/app.js"></script>
+    <% rows.forEach(user => { %>
+    <script>
+      let deleteBtn = document.querySelector("#delete");
+      deleteBtn.addEventListener("click", () => {
+        if (confirm("Are you delete this account?")) {
+          location = "/deleteAccount/<%= user.id %>/<%= user.username %>";
+        }
+      });
+    </script>
+    <%}); %>
+  </body>
+</html>

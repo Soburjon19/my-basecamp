@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <nav class="bg-light d-flex align-items-center justify-content-between">
+      <div class="logo">
+        <h2>Hello <%= rows[0].username %></h2>
+      </div>
+      <ul
+        class="nav-links m-0 d-flex align-items-center justify-content-between"
+      >
+        <li>
+          <form
+            action="/serarchUser"
+            method="get"
+            class="d-flex align-items-center justify-content-between"
+          >
+            <input
+              required
+              type="text"
+              placeholder="Search users"
+              name="uName"
+              class="mx-2 form-control"
+            />
+            <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </li>
+        <li>
+          <a href="/addPoject"><i class="fa-solid fa-circle-plus"></i></a>
+        </li>
+        <li>
+          <a href="/editProfile"><i class="fa-solid fa-user-pen"></i></a>
+        </li>
+        <li>
+          <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center">Projects</h2>
+        <% projects.forEach(project => { %> <% rows.forEach(user => { %>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card my-1">
+            <div class="cart-header rounded p-2 bg-dark text-light">
+              <div class="d-flex align-items-center justify-content-between">
+                <%= user.email %>
+                <a
+                  class="text-decoration-none text-light"
+                  href="/projectSettings/<%= project.id %>"
+                  ><i class="fa-solid fa-gear"></i></a
+                >
+              </div>
+              <%= project.name %>
+            </div>
+            <div class="card-body">
+              <p><%= project.description %></p>
+            </div>
+            <div
+              class="card-footer d-flex align-items-center justify-content-between"
+            >
+              <a class="btn btn-warning" href="/comments/<%= project.id %>"
+                ><i class="fa-solid fa-comment"></i></a
+              >
+              <a class="btn btn-danger" href="/deleteProject/<%= project.id %>"
+                ><i class="fa-solid fa-trash"></i></a
+              >
+            </div>
+          </div>
+        </div>
+        <%}); %> <%}); %>
+      </div>
+    </div>
+  </body>
+</html>

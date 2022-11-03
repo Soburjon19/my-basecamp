@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <% user.forEach(user => {%>
+    <nav class="bg-light d-flex align-items-center justify-content-between">
+      <div class="logo">
+        <h2><%= user.username %></h2>
+      </div>
+      <ul
+        class="nav-links m-0 d-flex align-items-center justify-content-between"
+      >
+        <li>
+          <a href="https://<%= user.email %>" target="_blank"
+            ><%= user.email %></a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center"><%= user.username %>'s projects</h2>
+        <% }) %> <% if (projects) { projects.forEach(project => { %>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card my-1">
+            <div class="cart-header rounded p-2 bg-dark text-light">
+              <div class="d-flex align-items-center justify-content-between">
+                <p class="m-0 text-center"><%= project.user %></p>
+                <p class="m-0 text-center"><%= project.id %></p>
+              </div>
+              <%= project.name %>
+            </div>
+            <div class="card-body">
+              <p class="m-0"><%= project.description %></p>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary w-100" href="/comments/<%= project.id %>"
+                >Show comments</a
+              >
+            </div>
+          </div>
+        </div>
+        <%})} else { %>
+        <h2 class="text-center">has no project</h2>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
