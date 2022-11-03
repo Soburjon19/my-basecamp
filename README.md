@@ -11,7 +11,7 @@ npm install && npm i nodemon -g
 ```
 npm start dev:start
 ```
-### Run server for review
+### Or run server for review
 ```
 npm start
 ```
